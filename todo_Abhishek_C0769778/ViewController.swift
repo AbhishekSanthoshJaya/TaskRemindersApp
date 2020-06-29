@@ -231,14 +231,18 @@ extension ViewController {
         
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         let request: NSFetchRequest<Todo> = Todo.fetchRequest()
-        do {
+        do
+        {
             let notifications = try context.fetch(request)
             for task in notifications {
-                if Calendar.current.isDateInTomorrow(task.due_date!) {
+                if Calendar.current.isDateInTomorrow(task.due_date!)
+                {
                     notificationArray.append(task)
                 }
             }
-        } catch {
+        }
+        catch
+        {
             print("Error loading todos \(error.localizedDescription)")
     }
   }
