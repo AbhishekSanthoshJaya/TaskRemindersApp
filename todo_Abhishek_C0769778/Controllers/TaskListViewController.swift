@@ -219,7 +219,7 @@ extension TaskTableViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let complete = UIContextualAction(style: .normal, title: "Completed") { (action, view, completion) in
+        let complete = UIContextualAction(style: .normal, title: "Done") { (action, view, completion) in
             self.selectedTodo = self.tasksArray[indexPath.row]
             self.markTodoCompleted()
         }
@@ -227,10 +227,10 @@ extension TaskTableViewController: UITableViewDelegate, UITableViewDataSource {
             self.todoToMove.append(self.tasksArray[indexPath.row])
             self.performSegue(withIdentifier: "moveTodoScreen", sender: nil)
         }
-        complete.backgroundColor = #colorLiteral(red: 0.9764705896, green: 0.850980401, blue: 0.5490196347, alpha: 1)
-        complete.image = UIImage(systemName: "checkmark.circle.fill")
-        move.backgroundColor = #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1)
-        move.image = UIImage(systemName: "arrowshape.turn.up.right.fill")
+        complete.backgroundColor = #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1)
+        complete.image = UIImage(systemName: "checkmark.circle")
+        move.backgroundColor = #colorLiteral(red: 0.9607843161, green: 0.7058823705, blue: 0.200000003, alpha: 1)
+        move.image = UIImage(systemName: "arrowshape.turn.up.right")
         return UISwipeActionsConfiguration(actions: [complete, move])
     }
     
@@ -240,8 +240,6 @@ extension TaskTableViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-
-//MARK: implemenets search bar methods
 extension TaskTableViewController: UISearchBarDelegate {
     
     func showSearchBar() {

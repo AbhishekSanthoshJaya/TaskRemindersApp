@@ -164,8 +164,9 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         let category = categoryArray[indexPath.row]
         if category.name == "Archived"
         {
-            cell.backgroundColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
+            cell.backgroundColor = #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1)
             cell.textLabel?.textColor = UIColor.blue
+            //cell.textLabel?.textAlignment = .center
         }
         cell.textLabel?.text = category.name
         return cell

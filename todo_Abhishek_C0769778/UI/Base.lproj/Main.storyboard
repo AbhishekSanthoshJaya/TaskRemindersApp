@@ -124,6 +124,7 @@ CFNPUlQgQlkgTkFNRQ
 </string>
                                     </segment>
                                 </segments>
+                                <color key="selectedSegmentTintColor" red="0.89411764709999997" green="0.78823529410000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <action selector="sortTodos:" destination="yBZ-9B-Umz" eventType="valueChanged" id="5ph-eH-kio"/>
                                 </connections>
