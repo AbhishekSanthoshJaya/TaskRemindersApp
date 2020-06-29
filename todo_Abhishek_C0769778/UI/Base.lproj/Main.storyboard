@@ -177,8 +177,7 @@ CFNPUlQgQlkgTkFNRQ
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <datePicker clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="100" verticalHuggingPriority="100" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" translatesAutoresizingMaskIntoConstraints="NO" id="ZA5-xE-WJQ">
-                                <rect key="frame" x="10" y="202" width="394" height="216"/>
-                                <color key="backgroundColor" red="0.89411764709999997" green="0.78823529410000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <rect key="frame" x="10" y="385" width="394" height="216"/>
                                 <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
                             </datePicker>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" Set a task" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7hg-sm-ws1">
@@ -187,14 +186,14 @@ CFNPUlQgQlkgTkFNRQ
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" Set a due date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LLU-vx-OpG">
-                                <rect key="frame" x="0.0" y="172" width="414" height="20"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" Set a due date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oGT-jb-zfe">
+                                <rect key="frame" x="0.0" y="349" width="414" height="20"/>
                                 <fontDescription key="fontDescription" name="HoeflerText-Regular" family="Hoefler Text" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" spacing="93" translatesAutoresizingMaskIntoConstraints="NO" id="xad-Mx-ieC">
-                                <rect key="frame" x="67" y="451" width="297" height="34"/>
+                                <rect key="frame" x="75" y="660" width="297" height="34"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KmT-JD-C2s">
                                         <rect key="frame" x="0.0" y="0.0" width="72" height="34"/>
@@ -214,23 +213,45 @@ CFNPUlQgQlkgTkFNRQ
                                     </button>
                                 </subviews>
                             </stackView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Y2Y-Tg-es8">
+                                <rect key="frame" x="10" y="214" width="394" height="118"/>
+                                <color key="backgroundColor" red="0.89411764709999997" green="0.78823529410000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="118" id="gxO-Ha-XUM"/>
+                                </constraints>
+                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" Task description" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LLU-vx-OpG">
+                                <rect key="frame" x="0.0" y="186" width="414" height="20"/>
+                                <fontDescription key="fontDescription" name="HoeflerText-Regular" family="Hoefler Text" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="ZA5-xE-WJQ" firstAttribute="top" secondItem="oGT-jb-zfe" secondAttribute="bottom" constant="16" id="1FJ-Fk-RoT"/>
                             <constraint firstItem="AaY-dA-dmi" firstAttribute="leading" secondItem="YvN-cf-5Nt" secondAttribute="leading" constant="10" id="34y-ai-O6y"/>
                             <constraint firstItem="7hg-sm-ws1" firstAttribute="top" secondItem="YvN-cf-5Nt" secondAttribute="top" constant="10" id="3QJ-gU-Ec9"/>
                             <constraint firstItem="AaY-dA-dmi" firstAttribute="top" secondItem="7hg-sm-ws1" secondAttribute="bottom" constant="10" id="5NZ-E5-4Aw"/>
+                            <constraint firstItem="Y2Y-Tg-es8" firstAttribute="top" secondItem="kP0-9i-doS" secondAttribute="top" constant="214" id="6bB-MV-dvL"/>
+                            <constraint firstItem="oGT-jb-zfe" firstAttribute="trailing" secondItem="LLU-vx-OpG" secondAttribute="trailing" id="8JA-Wu-RLc"/>
+                            <constraint firstItem="xad-Mx-ieC" firstAttribute="top" secondItem="ZA5-xE-WJQ" secondAttribute="bottom" constant="59" id="9Pg-uz-3ZD"/>
+                            <constraint firstItem="oGT-jb-zfe" firstAttribute="leading" secondItem="LLU-vx-OpG" secondAttribute="leading" id="AVh-tY-FsC"/>
+                            <constraint firstItem="LLU-vx-OpG" firstAttribute="trailing" secondItem="7hg-sm-ws1" secondAttribute="trailing" id="Hcm-0X-C4k"/>
                             <constraint firstItem="7hg-sm-ws1" firstAttribute="trailing" secondItem="YvN-cf-5Nt" secondAttribute="trailing" id="JTQ-uU-9bP"/>
+                            <constraint firstItem="ZA5-xE-WJQ" firstAttribute="leading" secondItem="Y2Y-Tg-es8" secondAttribute="leading" id="Ksw-QC-xBx"/>
+                            <constraint firstItem="ZA5-xE-WJQ" firstAttribute="trailing" secondItem="Y2Y-Tg-es8" secondAttribute="trailing" id="MOZ-4X-94D"/>
                             <constraint firstItem="7hg-sm-ws1" firstAttribute="leading" secondItem="YvN-cf-5Nt" secondAttribute="leading" id="NO7-4B-Mc8"/>
-                            <constraint firstItem="LLU-vx-OpG" firstAttribute="trailing" secondItem="YvN-cf-5Nt" secondAttribute="trailing" id="OTC-ZT-tkG"/>
-                            <constraint firstItem="xad-Mx-ieC" firstAttribute="leading" secondItem="YvN-cf-5Nt" secondAttribute="leading" constant="67" id="QAL-5s-3LA"/>
-                            <constraint firstItem="LLU-vx-OpG" firstAttribute="leading" secondItem="YvN-cf-5Nt" secondAttribute="leading" id="SP4-8w-PSm"/>
+                            <constraint firstItem="Y2Y-Tg-es8" firstAttribute="top" secondItem="LLU-vx-OpG" secondAttribute="bottom" constant="8" id="Oil-1o-OU3"/>
+                            <constraint firstItem="LLU-vx-OpG" firstAttribute="leading" secondItem="7hg-sm-ws1" secondAttribute="leading" id="Sms-Hg-ga1"/>
+                            <constraint firstItem="Y2Y-Tg-es8" firstAttribute="leading" secondItem="AaY-dA-dmi" secondAttribute="leading" id="YBP-Zu-TvB"/>
+                            <constraint firstItem="Y2Y-Tg-es8" firstAttribute="trailing" secondItem="AaY-dA-dmi" secondAttribute="trailing" id="Yuw-WL-DFB"/>
                             <constraint firstItem="YvN-cf-5Nt" firstAttribute="trailing" secondItem="AaY-dA-dmi" secondAttribute="trailing" constant="10" id="ZM3-he-bIy"/>
-                            <constraint firstItem="LLU-vx-OpG" firstAttribute="top" secondItem="AaY-dA-dmi" secondAttribute="bottom" constant="10" id="au7-e0-ODW"/>
-                            <constraint firstItem="ZA5-xE-WJQ" firstAttribute="top" secondItem="LLU-vx-OpG" secondAttribute="bottom" constant="10" id="e3y-TX-nXA"/>
-                            <constraint firstItem="xad-Mx-ieC" firstAttribute="top" secondItem="ZA5-xE-WJQ" secondAttribute="bottom" constant="33" id="keF-Mb-t60"/>
-                            <constraint firstItem="ZA5-xE-WJQ" firstAttribute="leading" secondItem="YvN-cf-5Nt" secondAttribute="leading" constant="10" id="pcC-pp-8NC"/>
-                            <constraint firstItem="YvN-cf-5Nt" firstAttribute="trailing" secondItem="ZA5-xE-WJQ" secondAttribute="trailing" constant="10" id="rgi-ru-RRP"/>
+                            <constraint firstItem="oGT-jb-zfe" firstAttribute="top" secondItem="Y2Y-Tg-es8" secondAttribute="bottom" constant="17" id="chD-qn-ZKp"/>
+                            <constraint firstItem="xad-Mx-ieC" firstAttribute="leading" secondItem="YvN-cf-5Nt" secondAttribute="leading" constant="75" id="hRc-fm-8Yy"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="YvN-cf-5Nt"/>
                     </view>
@@ -244,6 +265,7 @@ CFNPUlQgQlkgTkFNRQ
                     <connections>
                         <outlet property="buttonStack" destination="xad-Mx-ieC" id="cri-ld-fph"/>
                         <outlet property="deadlineLabel" destination="ZA5-xE-WJQ" id="hhp-90-shi"/>
+                        <outlet property="taskText" destination="Y2Y-Tg-es8" id="a9C-uF-V7E"/>
                         <outlet property="todoTitleLabel" destination="AaY-dA-dmi" id="YN4-8U-lTN"/>
                     </connections>
                 </viewController>

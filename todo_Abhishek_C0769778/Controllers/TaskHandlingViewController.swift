@@ -14,6 +14,7 @@ class TaskHandlingViewController: UIViewController {
     
     @IBOutlet weak var todoTitleLabel: UITextField!
     
+    @IBOutlet weak var taskText: UITextView!
     var todo: Todo?
 //    delegate for previous screen to call methods
     var delegate: TaskTableViewController?
@@ -24,6 +25,14 @@ class TaskHandlingViewController: UIViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
+         //Looks for single or multiple taps.
+    //let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+
+    //Uncomment the line below if you want the tap not not interfere and cancel other interactions.
+    //tap.cancelsTouchesInView = false
+
+    //view.addGestureRecognizer(tap)
+        
 //        hides completed and deleted buttons if new todo
         if todo == nil {
             buttonStack.isHidden = true
@@ -31,22 +40,28 @@ class TaskHandlingViewController: UIViewController {
 //        sets the field values if old todo opened
         if let todoData = todo
         {
+            taskText.text = todoData.taskText
             todoTitleLabel.text = todoData.name
             deadlineLabel.date = todoData.due_date!
         }
     }
-    
+    //Calls this function when the tap is recognized.
+    @objc func dismissKeyboard() {
+        //Causes the view (or one of its embedded text fields) to resign the first responder status.
+        view.endEditing(true)
+    }
     
     @IBAction func saveTask(_ sender: Any) {
         if(checkTitle())
         {
             if todo == nil
             {
-                delegate?.saveTodo(title: todoTitleLabel!.text!, dueDate: deadlineLabel!.date)
+                delegate?.saveTodo(title: todoTitleLabel!.text!, taskText: taskText!.text!, dueDate: deadlineLabel!.date)
             }
             else
             {
                 todo?.name = todoTitleLabel!.text!
+                todo?.taskText = taskText!.text!
                 todo?.due_date = deadlineLabel!.date
                 delegate?.updateTodo()
             }
@@ -58,6 +73,7 @@ class TaskHandlingViewController: UIViewController {
         
         if(checkTitle()) {
             todo?.name = todoTitleLabel!.text!
+            todo?.taskText = taskText!.text!
             todo?.due_date = deadlineLabel!.date
             delegate?.markTodoCompleted()
             navigationController?.popViewController(animated: true)

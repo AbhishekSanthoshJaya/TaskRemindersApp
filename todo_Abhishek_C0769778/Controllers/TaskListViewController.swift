@@ -153,10 +153,11 @@ extension TaskTableViewController {
         
     }
     
-    func saveTodo(title: String, dueDate: Date)
+    func saveTodo(title: String, taskText: String, dueDate: Date)
     {
         let todo = Todo(context: todoListContext)
         todo.name = title
+        todo.taskText = taskText
         todo.due_date = dueDate
         todo.date = Date()
         todo.parentFolder = selectedCategory
