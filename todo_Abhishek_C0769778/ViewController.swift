@@ -33,7 +33,7 @@ class ViewController: UIViewController {
     
     @IBAction func addCategory(_ sender: Any) {
         
-        let alert = UIAlertController(title: "Let's add a category", message: "", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Category Name", message: "", preferredStyle: .alert)
         alert.addTextField(configurationHandler: addCategoryName(textField:))
         alert.addAction(UIAlertAction(title: "Add", style: .default, handler: { (action) in
             if(self.categoryName.text!.count < 1) {
@@ -172,7 +172,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         let category = categoryArray[indexPath.row]
 //        sets different color for archived category
         if category.name == "Archived" {
-            cell.backgroundColor = #colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1)
+            cell.backgroundColor = #colorLiteral(red: 0.9764705896, green: 0.850980401, blue: 0.5490196347, alpha: 1)
         }
         cell.textLabel?.text = category.name
         
@@ -195,7 +195,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
                 completion(true)
         }
         
-        delete.backgroundColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
+        delete.backgroundColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
         delete.image = UIImage(systemName: "trash.fill")
         return UISwipeActionsConfiguration(actions: [delete])
     }
