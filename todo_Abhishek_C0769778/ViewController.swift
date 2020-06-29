@@ -13,34 +13,33 @@ import UserNotifications
 class ViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
-    
     var categoryContext: NSManagedObjectContext!
     var notificationArray = [Todo]()
-    
     var categoryName = UITextField()
     var categoryArray: [Category] = [Category]()
     
-    override func viewDidLoad() {
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        
-        
-        initializeCoreData()
+        //Performing set-up functions
+        getCoreData()
         setUpTableView()
         firstTimeSetup()
         setUpNotifications()
     }
     
-    @IBAction func addCategory(_ sender: Any) {
-        
+    @IBAction func addCategory(_ sender: Any)
+    {
         let alert = UIAlertController(title: "Category Name", message: "", preferredStyle: .alert)
         alert.addTextField(configurationHandler: addCategoryName(textField:))
         alert.addAction(UIAlertAction(title: "Add", style: .default, handler: { (action) in
-            if(self.categoryName.text!.count < 1) {
+            if(self.categoryName.text!.count < 1)
+            {
                 self.emptyFieldAlert()
                 return
             }
-            else {
+            else
+            {
                 self.addNewCategory()
             }
         }))
@@ -48,73 +47,69 @@ class ViewController: UIViewController {
         self.present(alert, animated: true, completion: nil)
 
     }
-    
-    func emptyFieldAlert() {
-        
-        let alert = UIAlertController(title: "Oops!", message: "Name can't be empty", preferredStyle: .alert)
+    //Alerting user to not leave the category text field empty
+    func emptyFieldAlert()
+    {
+        let alert = UIAlertController(title: "Error!", message: "Name can't be empty", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
         self.present(alert, animated: true, completion: nil)
         
     }
     
-    func addCategoryName(textField: UITextField) {
-        
+    //Dynamically adding textfield to enter category name
+    func addCategoryName(textField: UITextField)
+    {
         self.categoryName = textField
         self.categoryName.placeholder = "Enter Category Name"
-        
     }
 
 }
 
-
-
-//MARK: core data methods implemented
-extension ViewController {
+extension ViewController
+{
     
-    
-    func initializeCoreData() {
-        print("initialized")
+    func getCoreData() {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         categoryContext = appDelegate.persistentContainer.viewContext
-        
         fetchCategoryData()
         
     }
     
-//    Initializes a default archived folder
+    //Setting up default archive folder
     func firstTimeSetup() {
         let categoryNames = self.categoryArray.map {$0.name}
         guard !categoryNames.contains("Archived") else {return}
         let newCategory = Category(context: self.categoryContext)
         newCategory.name = "Archived"
         self.categoryArray.append(newCategory)
-        do {
+        do
+        {
             try categoryContext.save()
             tableView.reloadData()
-        } catch {
+        }
+        catch
+        {
             print("Error saving categories \(error.localizedDescription)")
         }
     }
     
-    
-    func fetchCategoryData() {
-//        request
+    //Function to get category data and display them in a table
+    func fetchCategoryData()
+    {
         let request: NSFetchRequest<Category> = Category.fetchRequest()
         let sortDescriptor = NSSortDescriptor(key: "name", ascending: true)
-//        initialize
         request.sortDescriptors = [sortDescriptor]
         do {
             categoryArray = try categoryContext.fetch(request)
         } catch {
             print("Error loading categories: \(error.localizedDescription)")
         }
-//        data fetched
         tableView.reloadData()
-        
     }
     
-    func addNewCategory() {
-        
+    //Function to add new category to category list
+    func addNewCategory()
+    {
         let categoryNames = self.categoryArray.map {$0.name}
         guard !categoryNames.contains(categoryName.text) else {self.showAlert(); return}
         let newCategory = Category(context: self.categoryContext)
@@ -126,15 +121,14 @@ extension ViewController {
         } catch {
             print("Error saving categories \(error.localizedDescription)")
         }
-        
     }
     
-//    to be shown if user enters existing category name
-    func showAlert() {
+    //Alert preventing duplicate category names
+    func showAlert()
+    {
         let alert = UIAlertController(title: "Category Already Exists!", message: "", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
         self.present(alert, animated: true, completion: nil)
-
     }
     
     
@@ -147,41 +141,37 @@ extension ViewController {
     
 }
 
-
-
-
-//MARK: implements table view methods
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
     
-//    MARK: does inital table view setup
-    func setUpTableView() {
+
+    func setUpTableView()
+    {
         tableView.delegate = self
         tableView.dataSource = self
-//        setup for auto size of cell
         tableView.estimatedRowHeight = 44
         tableView.rowHeight = UITableView.automaticDimension
     }
         
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    {
         return categoryArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "categoryCell", for: indexPath)
         let category = categoryArray[indexPath.row]
-//        sets different color for archived category
-        if category.name == "Archived" {
-            cell.backgroundColor = #colorLiteral(red: 0.9764705896, green: 0.850980401, blue: 0.5490196347, alpha: 1)
+        if category.name == "Archived"
+        {
+            cell.backgroundColor = #colorLiteral(red: 0.9686274529, green: 0.78039217, blue: 0.3450980484, alpha: 1)
+            cell.textLabel?.textColor = UIColor.blue
         }
         cell.textLabel?.text = category.name
-        
         return cell
     }
-    
+    //Adding swipe left to delete table cell
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let delete = UIContextualAction(style: .destructive, title: "Delete") { (action, view, completion) in
-            
                 self.categoryContext.delete(self.categoryArray[indexPath.row])
                 self.categoryArray.remove(at: indexPath.row)
                 do {
@@ -189,8 +179,6 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
                 } catch {
                     print("Error saving the context \(error.localizedDescription)")
                 }
-                
-                //        reloads data
                 self.tableView.reloadData()
                 completion(true)
         }
@@ -205,13 +193,9 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-
-
-
-//MARK: implements notification center methods
 extension ViewController {
     
-//    sets up notifications for the tasks
+    //Setting up notifications
     func setUpNotifications() {
         
         checkDueTasks()
@@ -242,7 +226,8 @@ extension ViewController {
     }
     
 //    fetches the list of due tasks
-    func checkDueTasks() {
+    func checkDueTasks()
+    {
         
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         let request: NSFetchRequest<Todo> = Todo.fetchRequest()
@@ -255,9 +240,7 @@ extension ViewController {
             }
         } catch {
             print("Error loading todos \(error.localizedDescription)")
-        }
-        
     }
-    
+  }
 }
 
