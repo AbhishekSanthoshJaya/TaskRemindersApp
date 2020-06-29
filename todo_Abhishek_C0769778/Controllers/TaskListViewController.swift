@@ -36,6 +36,7 @@ class TaskTableViewController: UIViewController {
         setUpTableView()
         showSearchBar()
         categoryLabel.text = selectedCategory!.name
+        tableView.tableFooterView = UIView()
     }
     
     

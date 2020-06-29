@@ -26,6 +26,7 @@ class ViewController: UIViewController {
         setUpTableView()
         firstTimeSetup()
         setUpNotifications()
+        tableView.tableFooterView = UIView()
     }
     
     @IBAction func addCategory(_ sender: Any)

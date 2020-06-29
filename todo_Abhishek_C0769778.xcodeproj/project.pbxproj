@@ -18,6 +18,7 @@
 		00BC9F7924AA4E1800BDC36E /* TaskHandlingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00BC9F7824AA4E1800BDC36E /* TaskHandlingViewController.swift */; };
 		00BC9F7B24AA4E4400BDC36E /* FolderChangeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00BC9F7A24AA4E4400BDC36E /* FolderChangeViewController.swift */; };
 		00BC9F7D24AA4E5F00BDC36E /* singleTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00BC9F7C24AA4E5F00BDC36E /* singleTask.swift */; };
+		00BC9F8824AA722C00BDC36E /* Extension+TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00BC9F8724AA722C00BDC36E /* Extension+TableView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		00BC9F7824AA4E1800BDC36E /* TaskHandlingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskHandlingViewController.swift; sourceTree = "<group>"; };
 		00BC9F7A24AA4E4400BDC36E /* FolderChangeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderChangeViewController.swift; sourceTree = "<group>"; };
 		00BC9F7C24AA4E5F00BDC36E /* singleTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = singleTask.swift; sourceTree = "<group>"; };
+		00BC9F8724AA722C00BDC36E /* Extension+TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+TableView.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,7 @@
 		00BC9F5E24AA4C9F00BDC36E /* todo_Abhishek_C0769778 */ = {
 			isa = PBXGroup;
 			children = (
+				00BC9F8624AA721A00BDC36E /* Extension */,
 				00BC9F8424AA6CDB00BDC36E /* Model */,
 				00BC9F8324AA6CC900BDC36E /* UI */,
 				00BC9F8224AA6CBB00BDC36E /* DataModel */,
@@ -112,6 +115,14 @@
 				00BC9F7C24AA4E5F00BDC36E /* singleTask.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		00BC9F8624AA721A00BDC36E /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				00BC9F8724AA722C00BDC36E /* Extension+TableView.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -185,6 +196,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				00BC9F8824AA722C00BDC36E /* Extension+TableView.swift in Sources */,
 				00BC9F6424AA4C9F00BDC36E /* ViewController.swift in Sources */,
 				00BC9F6024AA4C9F00BDC36E /* AppDelegate.swift in Sources */,
 				00BC9F7B24AA4E4400BDC36E /* FolderChangeViewController.swift in Sources */,
