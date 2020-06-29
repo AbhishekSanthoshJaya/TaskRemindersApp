@@ -9,35 +9,28 @@
 import UIKit
 import CoreData
 
-class TaskHandlingViewController: UIViewController {
-
-    
+class TaskHandlingViewController: UIViewController
+{
     @IBOutlet weak var todoTitleLabel: UITextField!
-    
     @IBOutlet weak var taskText: UITextView!
     var todo: Todo?
-//    delegate for previous screen to call methods
     var delegate: TaskTableViewController?
     
     @IBOutlet weak var deadlineLabel: UIDatePicker!
-    
     @IBOutlet weak var buttonStack: UIStackView!
-    override func viewDidLoad() {
+    override func viewDidLoad()
+    {
         
         super.viewDidLoad()
-         //Looks for single or multiple taps.
+        //Gesture to dismiss keyboard
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-
-    //Uncomment the line below if you want the tap not not interfere and cancel other interactions.
-    //tap.cancelsTouchesInView = false
-
-    view.addGestureRecognizer(tap)
+        view.addGestureRecognizer(tap)
         
-//        hides completed and deleted buttons if new todo
+        //Removing options if the task is new
         if todo == nil {
             buttonStack.isHidden = true
         }
-//        sets the field values if old todo opened
+        //Setting values of existing tasks
         if let todoData = todo
         {
             taskText.text = todoData.taskText

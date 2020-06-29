@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 
+//Extenstion to handle empty table views
 extension UITableView {
 
     func setEmptyMessage(_ message: String) {

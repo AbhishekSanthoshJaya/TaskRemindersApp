@@ -39,14 +39,16 @@ class TaskTableViewController: UIViewController {
         tableView.tableFooterView = UIView()
     }
     
-    
+    //Moving to add tasks screen
     @IBAction func addTodo(_ sender: Any) {
         performSegue(withIdentifier: "todoViewScreen", sender: self)
     }
     
-    
-    @IBAction func sortTodos(_ sender: UISegmentedControl) {
-        switch sender.selectedSegmentIndex {
+    //Integer to indicate the type of sort
+    @IBAction func sortTodos(_ sender: UISegmentedControl)
+    {
+        switch sender.selectedSegmentIndex
+        {
         case 0: selectedSort = 0
             break
         case 1: selectedSort = 1
@@ -54,14 +56,14 @@ class TaskTableViewController: UIViewController {
         default:
             break
         }
-        
         loadTodos()
         tableView.reloadData()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        if let destination = segue.destination as? TaskHandlingViewController {
+        if let destination = segue.destination as? TaskHandlingViewController
+        {
             destination.delegate = self
             if selectedTodo != nil
             {
@@ -69,10 +71,10 @@ class TaskTableViewController: UIViewController {
             }
         }
         
-        if let destination = segue.destination as? FolderChangeViewController {
+        if let destination = segue.destination as? FolderChangeViewController
+        {
                 destination.selectedTodo = todoToMove
         }
-        
     }
     
     @IBAction func unwindToTaskListView(_ unwindSegue: UIStoryboardSegue) {
@@ -80,12 +82,9 @@ class TaskTableViewController: UIViewController {
         loadTodos()
         tableView.reloadData()
     }
-    
-    
 }
 
 
-//MARK: implement core data methods
 extension TaskTableViewController {
     
     func loadTodos(with request: NSFetchRequest<Todo> = Todo.fetchRequest(), predicate: NSPredicate? = nil) {
@@ -118,7 +117,8 @@ extension TaskTableViewController {
     }
     
     
-    func saveTodos() {
+    func saveTodos()
+    {
         do {
             try todoListContext.save()
         } catch {
@@ -175,7 +175,6 @@ extension TaskTableViewController {
 
 
 extension TaskTableViewController: UITableViewDelegate, UITableViewDataSource {
-    //    MARK: does inital table view setup
     func setUpTableView() {
         tableView.delegate = self
         tableView.dataSource = self
@@ -193,12 +192,15 @@ extension TaskTableViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "todoCell", for: indexPath)
         let task = tasksArray[indexPath.row]
         cell.textLabel?.text = task.name
-//        sets color of missed tasks in categories except Archived
-        if (task.due_date! < Date() && task.parentFolder?.name != "Archived") {
+        
+        //Handling color changes of cell background based on due date
+        if (task.due_date! < Date() && task.parentFolder?.name != "Archived")
+        {
             cell.backgroundColor = #colorLiteral(red: 0.9372549057, green: 0.3490196168, blue: 0.1921568662, alpha: 1)
         }
-//        sets color of due tasks in categories except Archived
-        if (Calendar.current.isDateInToday(task.due_date!) && task.parentFolder?.name != "Archived") {
+
+        if (Calendar.current.isDateInToday(task.due_date!) && task.parentFolder?.name != "Archived")
+        {
             cell.backgroundColor = #colorLiteral(red: 0.721568644, green: 0.8862745166, blue: 0.5921568871, alpha: 1)
         }
         return cell
@@ -242,19 +244,20 @@ extension TaskTableViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension TaskTableViewController: UISearchBarDelegate {
     
-    func showSearchBar() {
-        
+    //Handling search bars
+    func showSearchBar()
+    {
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Search Folder"
         navigationItem.searchController = searchController
         searchController.searchBar.delegate = self
         definesPresentationContext = true
         searchController.searchBar.searchTextField.textColor = .white
-        
     }
     
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-                
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar)
+        
+    {
         let predicate = NSPredicate(format: "name CONTAINS[cd] %@", searchBar.text!)
         loadTodos(predicate: predicate)
         tableView.reloadData()
